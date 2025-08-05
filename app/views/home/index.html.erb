@@ -1,0 +1,31 @@
+<div class="col-lg-10 mx-auto mt-5">
+	<div class="card mt-4 mb-4">
+		<div class="card-body">
+			<h4 class="text-center">Search Professionals across the world!!</h4>
+			<%= search_form_for @q, url: root_path do |f| %>
+				<div class="input-group mb-3">
+					<%= f.label :country_or_first_name_or_city_cont %>
+  				<%= f.search_field :country_or_first_name_or_city_cont, class: "form-control", placeholder: "Seach by country and city and first name", area: {label: "Seach by country and city", describedby: "button-addon2"} %>
+  				<%= f.submit "Search", class: "btn btn-primary", id: "button-addon2"%>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row mt-4 mb-4">
+		<% @users.each do |user| %>
+			<div class="col-lg-3 mb-3 mt-3">
+				<div class="card text-center shadow" style="min-height: 400px; padding-bottom:10px;">
+					<div class="card-body">
+						<%= image_tag "dummpy.jpeg", style: "width: 150px; border-radius: 50%; border: 2px solid #0d6efd;", class: 'mb-3' %>
+					</div>
+					<div class="user-info" data-controller="user-name">
+						<h5 data-user-name-target="name" data-action="click->user-name#getUserName"><%=user.name %></h5>
+						<p class="lead"><%= user.profile_title%></p>
+						<small class="text-primary"><%= user.country %></small><br>
+						<%= link_to "View Profile", member_path(user), class: "btn btn-primary mt-2"%>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
